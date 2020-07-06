@@ -1,0 +1,117 @@
+/*-------------- Loading buttons --------------*/
+.button-loading {
+  .mat-button-wrapper {
+    display: flex;
+    align-items: center;
+  }
+}
+.btn-spinner {
+  width: 1em;
+  height: 1em;
+  background: transparent;
+  border-radius: 50%;
+  margin: 0 16px 0 0;
+  border: 2px solid transparent;
+  animation: btn-glow 1s ease infinite;
+}
+
+@keyframes btn-glow {
+  0% {
+    box-shadow: 0 0 0 0.4em darken(#777676, 10%), 0 0 0 0.1em darken(#777676, 10%);
+    transform: rotate(360deg);
+  }
+  50% {
+    border-top-color: #777676;
+  }
+  100% {
+    box-shadow: 0 0 0 0.4em darken(#777676, 10%), 0 0 0 3.6em transparent;
+  }
+}
+
+.mat-flat-button {
+  @include font-lato;
+  font-size: $font-size-md;
+
+  &.mat-primary {
+    border-radius: 2px;
+    padding: 15px 26px;
+    @include degrade-primary;
+
+    &[disabled] {
+      color: $disabled-button-color;
+      background-image: none;
+      background-color: $disabled-button-background;
+    }
+  }
+
+  &.mat-secondary {
+    border-radius: 2px;
+    padding: 4px 30px;
+    background: #e5e5e5;
+    color: $primary;
+  }
+}
+.mat-raised-button {
+  &.add-new{
+    font-size: $font-size-sm;
+    text-align: center;
+    color: white;
+    background: $primary;
+    padding: 3px 22px;
+    border-radius: 0px;
+  }
+}
+.btn-no-bg.mat-button,
+.mat-raised-button{
+  @include font-lato;
+  font-size: $font-size-md;
+  .mat-button-wrapper{
+    display: block;
+    padding: 12px 10px;
+  }
+}
+// buttons
+.green-button,
+.add-new.green-button {
+  display: block;
+  font-size: $default-font-size;
+  @include degrade-primary;
+  color: $body-text-color;
+  padding: 22px 15px;
+  min-width: 165px !important;
+}
+
+.egret-navy {
+  .mat-flat-button,
+  .mat-raised-button {
+    &.mat-primary {
+      background-color: $primary;
+      color: white;
+    }
+    &.add-new.green-button{
+      padding: 3px 22px;
+      color: black;
+    }
+  }
+}
+
+.tot-default-submit-btn {
+  font-style: normal;
+  font-size: 18px !important;
+  line-height: 22px !important;
+  text-align: center !important;
+  color: #232731 !important;
+  background: linear-gradient(282.9deg, #00CD00 40.4%, #7AF003 96.06%) !important;
+  border-radius: 2px; font-weight: normal !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25) !important;
+  min-width: 170px !important;
+  padding: 18px 35px !important;
+
+  &.outline-btn {
+    color: rgba(35, 39, 49, 0.8) !important;
+    background: #FFFFFF !important;
+    border: 1px solid #4B4F5A !important;
+    box-sizing: border-box !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25) !important;
+  }
+}

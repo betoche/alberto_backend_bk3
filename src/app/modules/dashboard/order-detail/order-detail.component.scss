@@ -1,0 +1,67 @@
+.order-detail-title {
+  margin-bottom: 30px;
+  ul {
+    padding: 0px;
+    margin: 0px;
+    color: #000000;
+    li {
+      list-style: none;
+      margin-right: 6px;
+      float: left;
+      font-size: 14px;
+      line-height: 18px;
+    }
+    li.decoration-line {
+      text-decoration-line: underline;
+    }
+  }
+}
+
+.order-detail {
+  margin-top: 50px;
+  padding: 30px 35px;
+
+  .mat-card-content {
+    color: #4B4F5A;
+    font-size: 16px;
+
+    .order-number {
+      font-size: 20px;
+    }
+
+    .order-status, .order-request-date {
+      margin-top: 13px;
+    }
+
+    .place-of-delivery-wrapper {
+      margin-top: 48px;
+    }
+  }
+
+  .p-label {
+    width: 130px;
+  }
+
+  .p-label, .p-text {
+    display: inline-block;
+    margin-bottom: unset;
+  }
+
+  .order-subtotal, .order-tax, .order-total {
+    div {
+      display: inline-block;
+    }
+
+    .text {
+      width: 100px;
+    }
+  }
+
+  .order-subtotal, .order-tax {
+    font-size: 16px;
+  }
+
+  .order-total {
+    font-size: 20px;
+  }
+}

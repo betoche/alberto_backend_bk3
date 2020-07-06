@@ -1,0 +1,161 @@
+// Utils
+@import './definitions';
+@import '../scss/mixins/mixins';
+@import '../scss/variables';
+@import '../scss/colors';
+
+
+hr.division{
+  height: 0px;
+  border: 1px solid $division-border-color-gray;
+}
+
+mat-card.mat-card {
+  border-radius: unset !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  padding-top: unset !important;
+  padding-top: unset !important;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+// Text
+
+.text-right-important{
+  text-align: right !important;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+.font-13{
+  font-size: 13px;
+}
+
+// Grid
+
+.xs-column{
+  width: 45px !important;
+}
+
+// Spacing
+
+.padding-l-15{
+  padding-left: 15px;
+}
+
+.margin-b-20{
+  margin-bottom: 20px;
+  display: block;
+}
+
+.margin-b-10{
+  margin-bottom: 20px;
+  display: block;
+}
+
+.margin-t-20{
+  margin-top: 20px;
+}
+
+.margin-t-10{
+  margin-top: 10px;
+}
+
+.margin-t-5{
+  margin-top: 5px;
+}
+
+.padding-20{
+  padding: 20px;
+}
+
+.ml-8 {
+  margin-left: 8px;
+}
+
+.mr-b50 {
+  margin-bottom: 50px !important;
+}
+
+.margin-bottom-100 {
+  margin-bottom: 100px !important;
+}
+
+.margin-bottom-15{
+  margin-bottom: 15px;
+}
+
+.margin-horizontal-05rem {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.center{
+  margin: 0 auto;
+}
+
+// Visibility
+
+.display-none{
+  display: none !important;
+}
+
+.d-inline {
+  display: inline;
+}
+
+.display-block{
+  display: block !important;
+}
+
+// Sizing
+
+.half-width {
+  width: 50% !important;
+}
+
+.width-120 {
+  width: 120px !important;
+}
+
+.width-90{
+  width: 90%;
+}
+
+// Layout
+
+.egret-navy .mat-drawer-container {
+  background-color: white
+}
+
+// Flash messages
+
+app-flash-messsage{
+  mat-card.mat-card{
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+}
+
+// States
+
+.reactivate{
+  color: $primary-color;
+}
+
+// Borders
+
+.green-border {
+  border-color: $primary-color !important;
+}
+
+// Colors
+
+.grey-color{
+  color: #8c8b8b;
+}

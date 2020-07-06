@@ -1,0 +1,97 @@
+.top-message-form{
+  margin-bottom: 15px;
+}
+
+.form-info-msg{
+  color: #1100ff;
+}
+
+.icon-menu.mb-1.ng-star-inserted{
+  text-align: center;
+}
+
+.text-right-important{
+  text-align: right !important;
+}
+
+.xs-column{
+  width: 45px !important;
+}
+
+.margin-bottom-15{
+  margin-bottom: 15px;
+}
+
+.display-none{
+  display: none !important;
+}
+
+.half-width {
+  width: 50% !important;
+}
+
+.app-admin-container.sidebar-full.left-sidebar-enabled {
+  .mat-card {
+    margin-bottom: 80px
+  }
+}
+
+.mat-card {
+  margin-top: 40px;
+  border-radius: unset !important;
+}
+
+.ngx-datatable {
+  &.material {
+    .datatable-body {
+      .datatable-body-row {
+        height: auto !important;
+        .datatable-body-cell {
+          height: auto !important;
+          p {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    .datatable-footer {
+      margin-top: -34px !important;
+      .datatable-footer-inner {
+        height: 30px !important;
+      }
+
+      .datatable-pager a {
+        margin: 0px;
+      }
+    }
+  }
+}
+
+.mat-select-tot-style{
+  .mat-form-field-outline {
+    border: 1px solid #000;
+    div {
+      background: none !important;
+    }
+  }
+  .mat-form-field-infix {
+    padding: 0px 0px 10px 0px!important;
+  }
+  .mat-select-arrow-wrapper {
+    transform: unset !important;
+  }
+}
+
+.mt-20 {
+  margin-top: 20px !important;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+h1.page-title {
+  font-size: 36px;
+  color: #000;
+}
