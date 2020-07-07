@@ -36,9 +36,37 @@ mat-form-field.phone-number{
       border: 0;
     }
   }
+  &.mat-search {
+    .mat-form-field-outline {
+        .mat-form-field-outline-start {
+          border: 0;
+        }
+        .mat-form-field-outline-end {
+          border: 0;
+        }
+      }
+      .mat-form-field-infix {
+        padding:  20px 0 20px 0;
+        border-top: 0;
+        padding-left: 35px;
+      }
+      // icon
+      .mat-form-field-suffix{
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0.75em;
+        position: absolute;
+        height: 24px;
+      }
+  }
   .mat-form-field-infix{
     border: 0;
     padding: 20px 0 20px 0;
+  }
+  input{
+    @include font-lato;
+    font-size: $font-size-sm;
   }
 }
 

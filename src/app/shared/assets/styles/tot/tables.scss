@@ -133,20 +133,18 @@
   padding: 15px 0;
   border-top: 1px solid $primary-color;
   border-bottom: 1px solid $primary-color;
-  datatable-page-limit{
-    position: relative;
-    z-index: 2;
-  }
   // label
   mat-label{
     font-size: $font-size-xs;
     color: $body-text-color;
     font-weight: 300;
     display: inline-block;
-    vertical-align: middle
+    vertical-align: middle;
   }
   // select
   .mat-form-field{
+    position: relative;
+    z-index: 999;
     margin-left: 10px;
     display: inline-block;
     vertical-align: middle

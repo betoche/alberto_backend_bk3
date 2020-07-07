@@ -1,114 +1,116 @@
-<div class="margin-horizontal-05rem mt-05">
-  <h1 class="mb-2 page-title">
-    {{ 'REWARDS' | translate }}
-  </h1>
+<div class="base-container">
+  <div class="box-detail table-layout">
+    <div class="table-layout-wrap">
+      <div class="header-container">
+        <div class="header-nav">
+          <h1 class="headline">{{ 'REWARDS' | translate }}</h1>
+        </div>
+      </div>
 
-  <ul class="rewards-tab mt-0">
-    <li [ngClass]="{
-      'tab-item': true,
-      'active': false
-    }">
-      <a routerLink="/dashboard/rewards/redemption">
-        {{ 'REDEMPTION_OF_REWARDS' | translate }}
-      </a>
-    </li>
+      <div class="row-detail" animationDuration="0ms">
+        <div class="filter-group">
+          <a class="filter-item" routerLink="/dashboard/rewards/redemption"  [ngClass]="{'tab-item': true,'active': false}" translate>
+            {{ 'REDEMPTION_OF_REWARDS' | translate }}
+          </a>
+          <a class="filter-item" routerLink="/dashboard/rewards" [ngClass]="{'tab-item': true,'active': true}" translate>
+            {{ 'HISTORIES' | translate }}
+          </a>
+        </div>
+      </div>
 
-    <li [ngClass]="{
-      'tab-item': true,
-      'active': true
-    }">
-      <a routerLink="/dashboard/rewards">
-        {{ 'HISTORIES' | translate }}
-      </a>
-    </li>
-  </ul>
-</div>
+      <div class="row-detail">
+        <div fxLayout="row" fxLayoutWrap fxLayoutGap="22px">
+          <div fxFlex fxLayout="column">
+            <mat-label class="text-black" translate>PHARMACEUTICAL_COMPANY</mat-label>
+            <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
+              <mat-select (selectionChange)="filter()" [(ngModel)]="pharmaceuticalCompanyID">
+                <mat-option value="">{{ 'ALL_SELECT' | translate }}</mat-option>
+                <mat-option *ngFor="let company of pharmaceuticalCompaniesList" [value]="company.id">
+                  {{ company.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex fxLayout="column">
+            <mat-label class="text-black" translate>MEDICATION</mat-label>
+            <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
+              <mat-select (selectionChange)="filter()" [(ngModel)]="medicationId">
+              <mat-option value="">{{ 'ALL_SELECT' | translate }}</mat-option>
+                <mat-option *ngFor="let medication of medicationsList" [value]="medication.id">
+                  {{ medication.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex fxLayout="column">
+            <mat-label class="text-black" translate>DATE</mat-label>
+            <mat-form-field fxFlex floatLabel="never" appearance="outline">
+              <input matInput [matDatepicker]="datepicker" placeholder="DD/MM/YYYY" [(ngModel)]="redemptionDate" (dateChange)="filter()">
+              <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker touchUi="true" #datepicker></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
 
-<div class="margin-horizontal-05rem mt-20 clearfix">
-  <div fxFlex="100">
-    <div fxFlex="33" class="pr-1">
-      <mat-label class="text-black" translate>PHARMACEUTICAL_COMPANY</mat-label>
-      <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
-        <mat-select (selectionChange)="filter()" [(ngModel)]="pharmaceuticalCompanyID">
-          <mat-option value="">{{ 'ALL_SELECT' | translate }}</mat-option>
-          <mat-option *ngFor="let company of pharmaceuticalCompaniesList" [value]="company.id">
-            {{ company.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div class="row-detail">
+        <div class="row pagelimit-container">
+          <datatable-page-limit [(limit)]="pageLimit"></datatable-page-limit>
+        </div>
+      </div>
     </div>
 
-    <div fxFlex="33" class="pr-1">
-      <mat-label class="text-black" translate>MEDICATION</mat-label>
-      <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
-        <mat-select (selectionChange)="filter()" [(ngModel)]="medicationId">
-         <mat-option value="">{{ 'ALL_SELECT' | translate }}</mat-option>
-          <mat-option *ngFor="let medication of medicationsList" [value]="medication.id">
-            {{ medication.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+      <div animationDuration="0ms">
+        <div class="clearfix table-container">
+          <mat-card [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+            <mat-card-content>
+              <ngx-datatable
+                class="material ml-0 mr-0"
+                [rows]="rewards"
+                [columnMode]="'force'"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                [scrollbarH]="true"
+                [limit]="25"
+                [rowHeight]="50"
+                [messages]="datatableMessages"
+                [limit]="pageLimit"
+              >
+                <ngx-datatable-column name="{{'CODE' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.code }}
+                  </ng-template>
+                </ngx-datatable-column>
 
-    <div fxFlex="33" class="pr-1 date-picker">
-      <mat-label class="text-black" translate>DATE</mat-label>
-      <mat-form-field fxFlex floatLabel="never">
-        <input matInput [matDatepicker]="datepicker" placeholder="DD/MM/YYYY" [(ngModel)]="redemptionDate" (dateChange)="filter()">
-        <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
-        <mat-datepicker touchUi="true" #datepicker></mat-datepicker>
-      </mat-form-field>
-    </div>
+                <ngx-datatable-column name="{{'MEDICATION' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.medication_name }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'UNITS' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.amount }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'PLAN_NAME' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.loyalty_plan_name }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'REDEMPTION_DATE' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.redeemed_at | date: 'dd/MM/yyyy' }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+              </ngx-datatable>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
   </div>
 </div>
 
-<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
-  <mat-card-content class="p-2">
-    <div class="page-number">
-      <datatable-page-limit [(limit)]="pageLimit"></datatable-page-limit>
-    </div>
-    <br>
-    <ngx-datatable
-      class="material ml-0 mr-0"
-      [rows]="rewards"
-      [columnMode]="'force'"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [scrollbarH]="true"
-      [limit]="25"
-      [rowHeight]="50"
-      [messages]="datatableMessages"
-      [limit]="pageLimit"
-    >
-      <ngx-datatable-column name="{{'CODE' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.code }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'MEDICATION' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.medication_name }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'UNITS' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.amount }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'PLAN_NAME' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.loyalty_plan_name }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'REDEMPTION_DATE' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.redeemed_at | date: 'dd/MM/yyyy' }}
-        </ng-template>
-      </ngx-datatable-column>
-
-    </ngx-datatable>
-  </mat-card-content>
-</mat-card>
