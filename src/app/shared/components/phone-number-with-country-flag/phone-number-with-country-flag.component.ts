@@ -30,6 +30,6 @@ export class PhoneNumberWithCountryFlagComponent implements OnInit{
     }
 
     let phoneNumber = parsePhoneNumberFromString(this.number.value, this.country.value);
-    this.isValidPhoneNumber = phoneNumber.isValid();
+    this.isValidPhoneNumber = phoneNumber && phoneNumber.isValid();
   }
 }

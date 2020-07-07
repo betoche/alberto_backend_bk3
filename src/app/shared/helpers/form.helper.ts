@@ -23,7 +23,7 @@ export class FormHelper {
         canton_code: new FormControl(address_attributes['canton_code'], [Validators.required]),
         district_code: new FormControl(address_attributes['district_code'], [Validators.required]),
         suburb_code: new FormControl(address_attributes['suburb_code'], [Validators.required]),
-        note: new FormControl(address_attributes['note'], [])
+        note: new FormControl(address_attributes['note'], [Validators.required])
       }),
       billing_information_attributes: new FormGroup({
         id: new FormControl(

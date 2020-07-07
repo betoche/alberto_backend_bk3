@@ -5,14 +5,20 @@
     </div>
     <div fxLayout="row wrap" fxLayout.lt-sm="column">
       <div fxFlex="50" class="pr-1">
-        <mat-label>{{'PHARMACEUTICAL_NAME' | translate}} *</mat-label>
+        <mat-label>
+          {{'PAGES.COMPANIES.NAME_OF' | translate}}
+          {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *</mat-label>
         <mat-form-field class="full-width mb-24" appearance="outline">
           <input matInput formControlName="name" type="text"/>
         </mat-form-field>
       </div>
 
       <div fxFlex="50" class="pr-1">
-        <mat-label>{{'PHARMACEUTICAL_ID' | translate}} *</mat-label>
+        <mat-label>
+          {{'PAGES.COMPANIES.COMPANY_CODE' | translate}}
+          {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *
+        </mat-label>
+
         <mat-form-field class="full-width mb-24" appearance="outline">
           <input
               matInput

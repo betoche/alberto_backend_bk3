@@ -31,10 +31,19 @@
 
     .order-status, .order-request-date {
       margin-top: 13px;
+
+      .mat-icon {
+        color: #00CD00;
+        margin-right: 1rem;
+      }
     }
 
     .place-of-delivery-wrapper {
       margin-top: 48px;
+
+      .p-label {
+        font-weight: bold;
+      }
     }
   }
 
@@ -63,5 +72,11 @@
 
   .order-total {
     font-size: 20px;
+    font-weight: bold;
   }
+}
+
+.subtotal-and-total {
+  margin-right: 10.3rem;
+  margin-top: 10px;
 }

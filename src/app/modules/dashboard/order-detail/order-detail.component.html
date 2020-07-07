@@ -36,7 +36,8 @@
         </p>
 
         <p class="p-text">
-         {{ order?.order_status_code | uppercase | translate }}
+          <mat-icon matSuffix>{{ statusIcon(order) }}</mat-icon>
+          <span>{{ order?.order_status_code | uppercase | translate }}</span>
         </p>
       </div>
 
@@ -131,6 +132,8 @@
 
     </ngx-datatable>
 
+    <hr>
+
     <div class="subtotal-and-total text-right">
       <div class="order-subtotal">
         <div class="label">
@@ -160,21 +163,21 @@
 
     <div class="text-center mt-1" *ngIf="currentUser?.role == 'drugstore_location'">
       <button mat-raised-button mat-sm-button
-      class="mr-1 btn-default btn-no-border-radius"
+      class="outline-btn btn-no-border-radius mr-1 btn-no-bg white-button"
       *ngIf="order.order_status_code == 'in_process' || order.order_status_code == 'dispatched'"
       (click)="updateStatus('cancel')">
         {{ 'CANCEL_ORDER' | translate}}
       </button>
 
       <button mat-raised-button mat-sm-button
-      class="mr-1 btn-default btn-no-border-radius"
+      class="outline-btn btn-no-border-radius mr-1 btn-no-bg white-button"
       (click)="updateStatus('release')"
       *ngIf="order.order_status_code == 'in_process'">
         {{ 'RELEASE_ORDER' | translate}}
       </button>
 
       <button mat-raised-button mat-sm-button color="primary"
-      class="mr-1 btn-primary btn-no-border-radius"
+      class="mr-1 btn-primary btn-no-border-radius green-button"
       (click)="updateStatus('dispatch')"
       *ngIf="order.order_status_code == 'in_process'">
         {{ 'MARK_AS_DISPATCHED' | translate}}

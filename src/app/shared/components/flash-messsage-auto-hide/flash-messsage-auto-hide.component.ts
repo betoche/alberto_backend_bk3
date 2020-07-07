@@ -28,6 +28,12 @@ export class FlashMesssageAutoHideComponent implements OnInit {
         this.isShown = false;
       }, 5000 ); // auto hide this message after 5 seconds
     }
+
+    if(this._options['scrollToTop']){
+      document.querySelector('#rightside-content-hold').scroll(
+        { top: 0, left: 0, behavior: 'smooth' }
+      );
+    }
   }
 
   get options(){ return this._options }

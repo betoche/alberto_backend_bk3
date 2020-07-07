@@ -63,6 +63,14 @@ export class OrderDetailComponent implements OnInit {
     }
   }
 
+  public statusIcon(order) {
+    if (order.order_status_code == 'dispatched') {
+      return 'directions_bike_24px'
+    } else if (order.order_status_code == 'in_process') {
+      return 'local_pharmacy_24px'
+    }
+  }
+
   private fetchOrder() {
     this.ordersService.fetch(this.orderId).subscribe((response) => {
       this.order = new OrderModel(response['data']['attributes'])
