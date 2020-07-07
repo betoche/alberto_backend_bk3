@@ -79,6 +79,10 @@
   color: $body-text-color;
   padding: 22px 15px;
   min-width: 165px !important;
+  &[disabled]{
+    background: $disabled-button-background;
+    color: $disabled-button-color;
+  }
 }
 
 .egret-navy {

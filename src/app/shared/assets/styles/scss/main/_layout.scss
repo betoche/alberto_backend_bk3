@@ -281,13 +281,6 @@
     font-size: $font-size-md;
     min-height: 22px;
   }
-  // headline section
-  .section-header{
-    font-weight: bold;
-    font-size: $font-size-lg;
-    color: $primary;
-    margin-bottom: 32px;
-  }
   .row-detail{
     margin-bottom: 32px;
     &:last-child{
@@ -302,9 +295,10 @@
 
 
 // Card Tables Layout
-.box-detail.table-layout{  
+.box-detail.table-layout{
   padding: 0 !important;
   // wrap
+  .section-info,
   .table-layout-wrap {
     padding: 32px;
     // nav header
@@ -348,6 +342,9 @@
         padding-top: 11px !important;
         padding-bottom: 11px !important;
       }
+      &.mat-form-field-appearance-outline.form-field-default .mat-form-field-infix{
+        padding: 20px 0 !important
+      }
       // icon
       .mat-icon-button{
         width: 24px;
@@ -356,7 +353,7 @@
       }
     }
   }
-  
+
   // data table
   .table-container{
     margin-top: -22px;
@@ -398,4 +395,26 @@
       }
     }
   }
+}
+
+// wrap
+.section-info{
+  border-top: 3px solid $primary-color;
+  padding: 32px;
+}
+
+// headline section
+.section-header{
+  font-weight: bold;
+  font-size: $font-size-lg;
+  color: $primary;
+  margin-bottom: 32px;
+}
+
+
+// split
+.split{
+  height: 1px;
+  margin: 42px 0;
+  background-color: $disabled-button-background;
 }

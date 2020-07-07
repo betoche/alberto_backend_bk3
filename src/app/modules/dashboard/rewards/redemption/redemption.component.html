@@ -1,106 +1,120 @@
-<flash-messsage-auto-hide *ngIf="messageOptions.message" [options]="messageOptions"></flash-messsage-auto-hide>
-<div class="margin-horizontal-05rem mt-05">
-  <h1 class="mb-2 page-title">
-    {{ 'REWARDS' | translate }}
-  </h1>
-
-  <ul class="reward-tab mt-0">
-    <li [ngClass]="{
-      'tab-item': true,
-      'active': true
-    }">
-      <a routerLink="/dashboard/rewards/redemption">
-        {{ 'REDEMPTION_OF_REWARDS' | translate }}
-      </a>
-    </li>
-
-    <li [ngClass]="{
-      'tab-item': true
-    }">
-      <a routerLink="/dashboard/rewards">
-        {{ 'HISTORIES' | translate }}
-      </a>
-    </li>
-  </ul>
-</div>
-
-<mat-card class="p-0">
-  <mat-card-content class="p-2">
-    <form [formGroup]="form" (ngSubmit)="submit()">
-      <div fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
-        <div class="section-1 mt-24 mb-24">
-           <label for="">{{'ENTER_REWARD_CODE' | translate }}</label>
+<div class="base-container">
+  <div class="box-detail table-layout">
+    <flash-messsage-auto-hide *ngIf="messageOptions.message" [options]="messageOptions" class="mb-1"></flash-messsage-auto-hide>
+    <div class="table-layout-wrap">
+      <div class="header-container">
+        <div class="header-nav">
+          <h1 class="headline" translate>{{ 'REWARDS' | translate }}</h1>
         </div>
       </div>
-      <div fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="code" type="text" name="name" placeholder="{{ '1A2B3C' | translate }}" />
-            <mat-icon class="mat-invalid-icon" [ngStyle]="{'color':'#CDCDCD'}" matSuffix
-                      (click)="clear()">highlight_off</mat-icon>
-            <mat-icon class="mat-input-icon" [ngStyle]="{'color':'green'}" matSuffix>check_circle</mat-icon>
-          </mat-form-field>
+
+      <div class="row-detail" animationDuration="0ms">
+        <div class="filter-group">
+          <a class="filter-item" routerLink="/dashboard/rewards/redemption"  [ngClass]="{'tab-item': true,'active': true}" translate>
+            {{ 'REDEMPTION_OF_REWARDS' | translate }}
+          </a>
+          <a class="filter-item" routerLink="/dashboard/rewards" [ngClass]="{'tab-item': true}" translate>
+            {{ 'HISTORIES' | translate }}
+          </a>
         </div>
       </div>
-      <div *ngIf="isValidating" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
-        <div class="section-1 mt-24 mb-24">
-          <div fxFlex="50" class="mt-1 mr-1" style="text-align: center;">
-            <button mat-stroked-button color="primary" [disabled]="!form.valid" type="submit" id="submit-btn">
-              {{ 'VALIDATE' | translate }}
+    </div>
+    <div class="section-info" animationDuration="0ms">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="section-header">
+            {{'ENTER_REWARD_CODE' | translate }}
+        </div> 
+        <div fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
+          <div fxFlex="50">
+            <mat-form-field class="full-width form-field-default" appearance="outline">
+              <input matInput formControlName="code" type="text" name="name" placeholder="{{ '1A2B3C' | translate }}" />
+              <mat-icon class="mat-invalid-icon" [ngStyle]="{'color':'#CDCDCD'}" matSuffix
+                        (click)="clear()">highlight_off</mat-icon>
+              <mat-icon class="mat-input-icon" [ngStyle]="{'color':'green'}" matSuffix>check_circle</mat-icon>
+            </mat-form-field>
+          </div>
+        </div>
+        <div *ngIf="isValidating" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
+          <div>
+            <div fxFlex="50" class="mt-1 mr-1" style="text-align: center;">
+              <button mat-raised-button [disabled]="!form.valid" type="submit" id="submit-btn" class="green-button">
+                {{ 'VALIDATE' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="!isValidating" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
+          <div class="p-05">
+            <button mat-raised-button type="button" (click)="cancel()">
+              {{ 'CANCEL' | translate }}
+            </button>
+          </div>
+          <div class="p-05">
+            <button mat-raised-button class="green-button" type="submit" id="submit-btn">
+              {{ 'APPLY' | translate }}
             </button>
           </div>
         </div>
-      </div>
-      <div *ngIf="!isValidating" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
-        <div fxFlex="50" class="mt-1 mr-1" style="text-align: center;">
-          <button mat-stroked-button color="default" type="button" (click)="cancel()">
-            {{ 'CANCEL' | translate }}
-          </button>
+      </form>
+      <div *ngIf="reward && isDetailsShowing">
+        <div class="split"></div>
+        <h2 class="section-header">
+          {{ 'EXCHANGE_INFORMATION' | translate }}
+        </h2>
+        <div class="">
+          <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
+          <div fxFlex="50" class="pr-1 mb-24">
+            <span class="label-field mb-12" translate>{{ 'MEDICATION' | translate }}</span>
+            <div class="label-info">
+              {{reward?.medication_name}}
+            </div>
+          </div>
+
+          <div fxFlex="50" class="pr-1 mb-24">
+            <span class="label-field mb-12" translate>{{ 'EXPIRED_DATE' | translate }}</span>
+            <div class="label-info">
+              {{reward?.expired_at | date: 'dd/MM/yyyy'}}
+            </div>
+          </div>
+
+          <div fxFlex="50" class="pr-1 mb-24">
+            <span class="label-field mb-12" translate>{{ 'EXCHANGE_USER' | translate }}</span>
+            <div class="label-info">
+              {{reward?.customer_name}}
+            </div>
+          </div>
+
+          <div fxFlex="50" class="pr-1 mb-24">
+            <span class="label-field mb-12" translate>{{ 'PLAN_NAME' | translate }}</span>
+            <div class="label-info">
+              {{reward?.loyalty_plan_name}}
+            </div>
+          </div>
+
+          <div fxFlex="50" class="pr-1 mb-24">
+            <span class="label-field mb-12" translate>{{ 'VALID_TO' | translate }}</span>
+            <div class="label-info">
+              {{reward?.expired_at | date: 'dd/MM/yyyy'}}
+            </div>
+          </div>
+
+          <div fxFlex="50" class="pr-1 mb-24">
+            <span class="label-field mb-12" translate>{{ 'EXCHANGE_DETAILS' | translate }}</span>
+            <div class="label-info">
+              <span>Unidades a obtener: </span>
+              <span>{{reward.amount}}  {{reward.amount > 1 ? 'cajas' : 'caja'}}</span><br>
+              <span>Saldo a aplicar: </span>
+              <ng-container *ngIf="reward.exchange_details == 'points'">
+                <span>{{reward.amount_of_points_used}} puntos</span>
+              </ng-container>
+              <ng-container *ngIf="reward.exchange_details == 'boxes'">
+                <span>{{reward.amount_of_boxes_used}} cajas</span>
+              </ng-container>
+            </div>
+          </div>
+          </div>
         </div>
-        <div fxFlex="50" class="mt-1 mr-1" style="text-align: center;">
-          <button mat-stroked-button color="primary" type="submit" id="submit-btn">
-            {{ 'APPLY' | translate }}
-          </button>
-        </div>
-      </div>
-    </form>
-    <br>
-    <div *ngIf="reward && isDetailsShowing" fxLayout="row wrap" fxLayout.lt-sm="column">
-      <div class="reward-info">
-        <h2>{{ 'EXCHANGE_INFORMATION' | translate }}</h2>
-        <p>
-          <label for="">{{ 'MEDICATION' | translate }}</label>
-          <span>{{reward?.medication_name}}</span>
-        </p>
-        <p *ngIf="rewardStatus == 'expired' && reward?.expired_at">
-          <label for="">{{ 'EXPIRED_DATE' | translate }}</label>
-          <span>{{reward?.expired_at | date: 'dd/MM/yyyy'}}</span>
-        </p>
-        <p *ngIf="rewardStatus != 'expired' && reward?.customer_name">
-          <label for="">{{ 'EXCHANGE_USER' | translate }}</label>
-          <span>{{reward?.customer_name}}</span>
-        </p>
-        <p>
-          <label for="">{{ 'PLAN_NAME' | translate }}</label>
-          <span>{{reward?.loyalty_plan_name}}</span>
-        </p>
-        <p *ngIf="rewardStatus == 'inactive' && reward?.expired_at">
-          <label for="">{{ 'VALID_TO' | translate }}</label>
-          <span>{{reward?.expired_at | date: 'dd/MM/yyyy'}}</span>
-        </p>
-        <p class="description" *ngIf="rewardStatus != 'expired' && reward?.amount">
-          <label for="">{{ 'EXCHANGE_DETAILS' | translate }}</label>
-          <span>Unidades a obtener: </span>
-          <span>{{reward.amount}}  {{reward.amount > 1 ? 'cajas' : 'caja'}}</span><br>
-          <span>Saldo a aplicar: </span>
-          <ng-container *ngIf="reward.exchange_details == 'points'">
-            <span>{{reward.amount_of_points_used}} puntos</span>
-          </ng-container>
-          <ng-container *ngIf="reward.exchange_details == 'boxes'">
-            <span>{{reward.amount_of_boxes_used}} cajas</span>
-          </ng-container>
-        </p>
       </div>
     </div>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>
