@@ -26,10 +26,17 @@ export class PhoneNumberWithCountryFlagComponent implements OnInit{
 
   public checkPhoneNumberIsValid(){
     if(!this.number.value || !this.country.value){
+      this.isValidPhoneNumber = true;
       return false;
     }
 
     let phoneNumber = parsePhoneNumberFromString(this.number.value, this.country.value);
     this.isValidPhoneNumber = phoneNumber && phoneNumber.isValid();
+
+    if(this.isValidPhoneNumber){
+      this.number.setErrors(null);
+    }else{
+      this.number.setErrors({ invalidPhoneNumber: true });
+    }
   }
 }

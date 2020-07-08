@@ -13,7 +13,7 @@ export class DatatablePageLimitComponent implements OnInit {
     10, 25, 50, 100
   ];
 
-  changeValue(event) {
+  changeValue() {
     this.limitChange.emit(this.limit);
   }
 

@@ -19,56 +19,56 @@ export class MasterDataCountry{
     return data;
   }
 
-  public static dataForTreeView(checkedData = []){
+  public static listCountriesForTreeview(checkedData = []){
     let data = [];
     let index = 1;
 
-    _.each(COUNTRIES, (country, country_code) => {
-      let country_index = index;
+    _.each(COUNTRIES, (country, countryCode) => {
+      let countryIndex = index;
       data.push({
         id: index, name: country.name,
-        code: country_code, hasChild: true
+        code: countryCode, hasChild: true
       });
       index += 1;
 
-      _.each(country.provinces, (province, province_code) => {
-        let province_index = index;
+      _.each(country.provinces, (province, provinceCode) => {
+        let provinceIndex = index;
         data.push({
-          id: index, pid: country_index,
+          id: index, pid: countryIndex,
           name: province.name,
-          code: province_code,
+          code: provinceCode,
           hasChild: true
         });
         index += 1;
 
-        _.each(province.cantons, (canton, canton_code) => {
-          let canton_index = index;
+        _.each(province.cantons, (canton, cantonCode) => {
+          let cantonIndex = index;
           data.push({
-            id: index, pid: province_index,
+            id: index, pid: provinceIndex,
             name: canton.name,
-            canton_code: canton_code,
+            canton_code: cantonCode,
             hasChild: true
           });
           index += 1;
 
-          _.each(canton.districts, (district, district_code) => {
+          _.each(canton.districts, (district, districtCode) => {
             let isChecked = _.find(
               checkedData, {
-                country_code: country_code,
-                province_code: province_code,
-                canton_code: canton_code,
-                district_code: district_code
+                country_code: countryCode,
+                province_code: provinceCode,
+                canton_code: cantonCode,
+                district_code: districtCode
               }
             );
 
             data.push({
               id: index,
-              pid: canton_index,
+              pid: cantonIndex,
               name: district.name,
-              district_code: district_code,
-              canton_code: canton_code,
-              province_code: province_code,
-              country_code: country_code,
+              district_code: districtCode,
+              canton_code: cantonCode,
+              province_code: provinceCode,
+              country_code: countryCode,
               isChecked: !!isChecked,
               type: 'district'
             });

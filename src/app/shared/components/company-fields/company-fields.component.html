@@ -9,7 +9,11 @@
           {{'PAGES.COMPANIES.NAME_OF' | translate}}
           {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *</mat-label>
         <mat-form-field class="full-width mb-24" appearance="outline">
-          <input matInput formControlName="name" type="text"/>
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="{{'PAGES.COMPANIES.NAME_OF' | translate}} {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}}"/>
         </mat-form-field>
       </div>
 

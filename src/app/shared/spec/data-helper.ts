@@ -99,7 +99,30 @@ export class DataHelper {
     return {
       id: id,
       type: 'strategy',
-      attributes: Object.assign({ id: id, name: 'Strategy A' }, options)
+      attributes: Object.assign({
+        id: id, name: 'Strategy A',
+        client_status: 'active',
+        age_min_limit: '10',
+        age_max_limit: '20',
+        description: 'Test',
+        strategy_type_id: '1',
+        gender_of_target_market: 'female',
+        expiration_option: 'defined',
+        initial_date: '2020-07-04T00:00:00.000-06:00',
+        end_date: '2020-07-04T00:00:00.000-06:00',
+        strategy_type_name: 'Strategy Type'
+      }, options)
+    };
+  }
+
+  public static strategyProfileData(id, options = {}) {
+    return {
+      id: id,
+      type: 'strategy_profile',
+      attributes: Object.assign({
+        id: id, name: 'Profile',
+        strategy_attributes: this.strategyData('1234567890').attributes
+      }, options)
     };
   }
 
@@ -249,7 +272,7 @@ export class DataHelper {
     };
   }
 
-  public static listOfProfiles() {
+  public static listOfStrategyProfiles() {
     return {
       data: [this.profileData('1234567890')]
     };

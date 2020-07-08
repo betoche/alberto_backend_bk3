@@ -15,7 +15,7 @@ export class StrategyModel extends BaseModel {
   public description: string;
   public strategy_type_id: string;
   public strategy_profile_id: string;
-  public sponsor_id: string;
+  public benefits_provider_commerce_id: string;
   public can_be_exchanged: string;
   public amount_of_times_can_be_exchanged: number;
   public strategy_type_name: string;
@@ -52,7 +52,7 @@ export class StrategyModel extends BaseModel {
       'description',
       'strategy_type_id',
       'strategy_profile_id',
-      'sponsor_id',
+      'benefits_provider_commerce_id',
       'can_be_exchanged',
       'amount_of_times_can_be_exchanged',
       'strategy_type_name',

@@ -49,6 +49,8 @@
 
   "COMPANY_NAME": "Nombre de empresa",
   "PHONE": "Teléfono",
+  "TELEPHONE_1": "Teléfono principal",
+  "TELEPHONE_2": "Teléfono (opcional)",
   "ACTIVE": "Activo",
   "GOVERNMENT_ID": "Número de cédula",
   "GOVERNMENT_ID_TYPE": "Tipo de Identificación",
@@ -179,5 +181,7 @@
   "NAVIGATION": {
     "T&C": "T&C",
     "DASHBOARD": "Panel de control"
-  }
+  },
+
+  "UPDATED_PROFILE_MESSAGE": "La información del perfil se ha actualizado correctamente."
 }
