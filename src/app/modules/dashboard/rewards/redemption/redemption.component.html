@@ -24,10 +24,10 @@
         <div class="section-header">
             {{'ENTER_REWARD_CODE' | translate }}
         </div>
-        <div fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
-          <div fxFlex="50">
+        <div fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column" class="enter-code-form-field">
+          <div fxFlex="100">
             <mat-form-field class="full-width form-field-default" appearance="outline">
-              <input matInput formControlName="code" type="text" name="name" placeholder="{{ '1A2B3C' | translate }}" />
+              <input matInput formControlName="code" type="text" name="name" placeholder="{{ 'Código de canje' | translate }}" />
               <mat-icon class="mat-invalid-icon" [ngStyle]="{'color':'#CDCDCD'}" matSuffix
                         (click)="clear()">highlight_off</mat-icon>
               <mat-icon class="mat-input-icon" [ngStyle]="{'color':'green'}" matSuffix>check_circle</mat-icon>
@@ -36,7 +36,7 @@
         </div>
         <div *ngIf="isValidating" fxLayout="row wrap" fxLayoutAlign="center" fxLayout.lt-sm="column">
           <div>
-            <div fxFlex="50" class="mt-1 mr-1" style="text-align: center;">
+            <div fxFlex="50" class="mt-1" style="text-align: center;">
               <button mat-raised-button [disabled]="!form.valid" type="submit" id="submit-btn" class="green-button">
                 {{ 'VALIDATE' | translate }}
               </button>
@@ -56,7 +56,7 @@
           </div>
         </div>
       </form>
-      <div *ngIf="reward && isDetailsShowing">
+      <div *ngIf="reward && isDetailsShowing" class="reward-details">
         <div class="split"></div>
         <h2 class="section-header">
           {{ 'EXCHANGE_INFORMATION' | translate }}
