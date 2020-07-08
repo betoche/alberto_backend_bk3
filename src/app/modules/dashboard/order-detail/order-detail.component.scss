@@ -1,82 +1,100 @@
-.order-detail-title {
-  margin-bottom: 30px;
-  ul {
-    padding: 0px;
-    margin: 0px;
-    color: #000000;
-    li {
-      list-style: none;
-      margin-right: 6px;
-      float: left;
-      font-size: 14px;
-      line-height: 18px;
-    }
-    li.decoration-line {
-      text-decoration-line: underline;
-    }
+@import '../../../shared/assets/styles/tot/definitions.scss';
+@import '../../../shared/assets/styles/scss/_variables.scss';
+@import '../../../shared/assets/styles/scss/mixins/_mixins.scss';
+
+// container
+.box-detail{
+  &:before{
+    content: none
   }
 }
-
-.order-detail {
-  margin-top: 50px;
-  padding: 30px 35px;
-
-  .mat-card-content {
-    color: #4B4F5A;
-    font-size: 16px;
-
-    .order-number {
-      font-size: 20px;
-    }
-
-    .order-status, .order-request-date {
-      margin-top: 13px;
-
-      .mat-icon {
-        color: #00CD00;
-        margin-right: 1rem;
-      }
-    }
-
-    .place-of-delivery-wrapper {
-      margin-top: 48px;
-
-      .p-label {
-        font-weight: bold;
-      }
-    }
+// order detail
+.order-detail{
+  color: $primary;
+  font-size: $font-size-sm;
+  p{
+    margin-bottom: 3px;
   }
-
-  .p-label {
-    width: 130px;
-  }
-
-  .p-label, .p-text {
+  margin-bottom:71px;
+}
+// date
+.order-request-date{
+  text-align: right;
+}
+// column name
+.column-name{
+  margin-right: 10px;
+}
+// description
+.column-description{
+}
+// status
+.order-status{
+  >*{
+    vertical-align: middle;
     display: inline-block;
-    margin-bottom: unset;
   }
-
-  .order-subtotal, .order-tax, .order-total {
-    div {
-      display: inline-block;
-    }
-
-    .text {
-      width: 100px;
-    }
+  mat-icon{
+    color: $primary-color;
+    margin-right: 10px;
   }
-
-  .order-subtotal, .order-tax {
-    font-size: 16px;
+}
+// title
+.headline-column{
+  font-size: $default-font-size;
+  color: $body-text-color;
+}
+// row
+.order-row{
+  margin-bottom: 35px;
+  &:last-child{
+    margin-bottom: 0;
   }
+}
+// headline
+.order-headline{
+  margin-bottom: 18px;
+}
 
-  .order-total {
-    font-size: 20px;
-    font-weight: bold;
+// top header
+.header-container{
+  margin-bottom: 42px;
+  .headline{
+    font-size: 40px !important;
   }
 }
 
-.subtotal-and-total {
-  margin-right: 10.3rem;
-  margin-top: 10px;
+// total
+.total-order{
+  margin-top: 22px;
+  text-align: right;
+  &.order-detail{
+    margin-bottom: 138px;
+  }
+  .column-name{
+    margin-right: 0;
+    &:not(.text-left){
+      text-align: right;
+      margin-right: 58px;
+    }
+  }
+  .order-row.full-width{
+    > *{
+      margin-bottom: 10px;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+  .order-row:not(full-width){
+    text-align: left;
+    display: inline-block;
+    .column-name,
+    .column-description{
+      padding-left: 15px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+  }
 }

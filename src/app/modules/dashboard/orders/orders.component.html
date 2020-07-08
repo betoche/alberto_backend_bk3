@@ -57,87 +57,88 @@
         </div>
       </div>
 
-      <div animationDuration="0ms">
-        <div class="clearfix table-container">
-          <mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
-            <mat-card-content class="p-2">
-              <ngx-datatable
-                class="material ml-0 mr-0"
-                style="width: 100%"
-                [rows]="rows"
-                [columnMode]="'forced'"
-                [headerHeight]="50"
-                [footerHeight]="50"
-                [scrollbarH]="true"
-                [limit]="10"
-                [rowHeight]="50"
-                [messages]="datatableMessages"
-              >
-                <ngx-datatable-column name="{{'NUMBER_OF_REQUESTS' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.number_of_requests }}
-                  </ng-template>
-                </ngx-datatable-column>
+    </div>
 
-                <ngx-datatable-column name="{{'DATE' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.requested_date_time_formatted }}
-                  </ng-template>
-                </ngx-datatable-column>
+    <div animationDuration="0ms">
+      <div class="clearfix table-container">
+        <mat-card [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+          <mat-card-content>
+            <ngx-datatable
+              class="material ml-0 mr-0"
+              style="width: 100%"
+              [rows]="rows"
+              [columnMode]="'flex'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [scrollbarH]="true"
+              [limit]="10"
+              [rowHeight]="50"
+              [messages]="datatableMessages"
+            >
+              <ngx-datatable-column name="{{'NUMBER_OF_REQUESTS' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.number_of_requests }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'PLACE_OF_DELIVERY' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.customer_full_address }}
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'DATE' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.requested_date_time_formatted }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column
-                name="{{'MEDICATION' | translate}}"
-                [flexGrow]="1"
-                [sortable]="true" prop="medication_names">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    <p *ngFor="let item of row.order_items">
-                      {{ item.medication_name }}
-                    </p>
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'PLACE_OF_DELIVERY' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.customer_full_address }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'AMOUNT' | translate}}" [flexGrow]="1" width="90" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    <p *ngFor="let item of row.order_items">
-                      {{ item.quantity }}
-                    </p>
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column
+              name="{{'MEDICATION' | translate}}"
+              [flexGrow]="1"
+              [sortable]="true" prop="medication_names">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <p *ngFor="let item of row.order_items">
+                    {{ item.medication_name }}
+                  </p>
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'SUGGESTED_PRICE' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    <p *ngFor="let item of row.order_items">
-                      {{ item.subtotal_formatted }}
-                    </p>
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'AMOUNT' | translate}}" [flexGrow]="1" width="90" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <p *ngFor="let item of row.order_items">
+                    {{ item.quantity }}
+                  </p>
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column [flexGrow]="1" cellClass="text-right-important actions-cell" headerClass="text-right-important" [sortable]="false">
+              <ngx-datatable-column name="{{'SUGGESTED_PRICE' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <p *ngFor="let item of row.order_items">
+                    {{ item.subtotal_formatted }}
+                  </p>
+                </ng-template>
+              </ngx-datatable-column>
 
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    <button mat-raised-button mat-sm-button color="primary"
-                    *ngIf="orderType == 'requests' && currentUser?.role == 'drugstore_location'"
-                    (click)="takeOrder(row?.id)">
-                      {{ 'TAKE' | translate}}
-                    </button>
+              <ngx-datatable-column [flexGrow]="1" cellClass="text-right-important actions-cell" headerClass="text-right-important" [sortable]="false">
 
-                    <button mat-raised-button mat-sm-button color="primary"
-                    *ngIf="orderType != 'requests' || currentUser?.role != 'drugstore_location'"
-                    routerLink="/dashboard/orders/detail/{{row?.id}}">
-                      {{ 'SEE' | translate}}
-                    </button>
-                  </ng-template>
-                </ngx-datatable-column>
-              </ngx-datatable>
-            </mat-card-content>
-          </mat-card>
-        </div>
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <button mat-raised-button mat-sm-button color="primary"
+                  *ngIf="orderType == 'requests' && currentUser?.role == 'drugstore_location'"
+                  (click)="takeOrder(row?.id)">
+                    {{ 'TAKE' | translate}}
+                  </button>
+
+                  <button mat-raised-button mat-sm-button color="primary"
+                  *ngIf="orderType != 'requests' || currentUser?.role != 'drugstore_location'"
+                  routerLink="/dashboard/orders/detail/{{row?.id}}">
+                    {{ 'SEE' | translate}}
+                  </button>
+                </ng-template>
+              </ngx-datatable-column>
+            </ngx-datatable>
+          </mat-card-content>
+        </mat-card>
       </div>
     </div>
   </div>

@@ -220,10 +220,9 @@
   }
   // Container Breadcrumb Layout
   .breadcrumb{
-    a{
+    span,a{
       color: $body-text-color;
       font-size: $font-size-md;
-      text-decoration: underline;
       &:after{
         content: ">";
         display: inline-block;
@@ -235,6 +234,9 @@
       &:last-child:after{
         content: none;
       }
+    }
+    a{
+      text-decoration: underline;
     }
   }
 }
