@@ -18,11 +18,11 @@
     <!-- grid layout -->
     <div fxLayout="row wrap" fxLayout.lt-sm="column">
 
-      <div fxFlex="100" class="order-number">
+      <div fxFlex=100 class="order-number">
         {{ 'ORDER' | translate}} {{ order?.number_of_requests }}
       </div>
 
-      <div fxFlex="50" class="order-status">
+      <div fxFlex="100px" class="order-status">
         <p class="p-label pr-1">
           {{ 'STATUS' | translate }}:
         </p>
@@ -33,7 +33,7 @@
         </p>
       </div>
 
-      <div fxFlex="50" class="order-request-date text-right">
+      <div fxFlex class="order-request-date text-right">
         {{ order?.requested_date_time_formatted }}
       </div>
     </div>

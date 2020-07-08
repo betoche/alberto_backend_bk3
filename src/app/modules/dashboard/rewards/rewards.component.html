@@ -60,57 +60,57 @@
       </div>
     </div>
 
-      <div animationDuration="0ms">
-        <div class="clearfix table-container">
-          <mat-card [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
-            <mat-card-content>
-              <ngx-datatable
-                class="material ml-0 mr-0"
-                [rows]="rewards"
-                [columnMode]="'forced'"
-                [headerHeight]="50"
-                [footerHeight]="50"
-                [scrollbarH]="true"
-                [limit]="25"
-                [rowHeight]="50"
-                [messages]="datatableMessages"
-                [limit]="pageLimit"
-              >
-                <ngx-datatable-column name="{{'CODE' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.code }}
-                  </ng-template>
-                </ngx-datatable-column>
+    <div animationDuration="0ms">
+      <div class="clearfix table-container">
+        <mat-card [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+          <mat-card-content>
+            <ngx-datatable
+              class="material ml-0 mr-0"
+              [rows]="rewards"
+              [columnMode]="'forced'"
+              [headerHeight]="50"
+              [footerHeight]="50"
+              [scrollbarH]="true"
+              [limit]="25"
+              [rowHeight]="50"
+              [messages]="datatableMessages"
+              [limit]="pageLimit"
+            >
+              <ngx-datatable-column name="{{'CODE' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.code }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'MEDICATION' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.medication_name }}
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'MEDICATION' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.medication_name }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'UNITS' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.amount }}
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'UNITS' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.amount }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'PLAN_NAME' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.loyalty_plan_name }}
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'PLAN_NAME' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.loyalty_plan_name }}
+                </ng-template>
+              </ngx-datatable-column>
 
-                <ngx-datatable-column name="{{'REDEMPTION_DATE' | translate}}" [flexGrow]="1" [sortable]="false">
-                  <ng-template let-row="row" ngx-datatable-cell-template>
-                    {{ row?.redeemed_at | date: 'dd/MM/yyyy' }}
-                  </ng-template>
-                </ngx-datatable-column>
+              <ngx-datatable-column name="{{'REDEMPTION_DATE' | translate}}" [flexGrow]="1" [sortable]="false">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  {{ row?.redeemed_at | date: 'dd/MM/yyyy' }}
+                </ng-template>
+              </ngx-datatable-column>
 
-              </ngx-datatable>
-            </mat-card-content>
-          </mat-card>
-        </div>
+            </ngx-datatable>
+          </mat-card-content>
+        </mat-card>
       </div>
+    </div>
   </div>
 </div>
 
