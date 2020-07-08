@@ -289,6 +289,9 @@
     @include md{
       width: 85%;
       margin: 0 auto $row-detail-margin-bottom auto;
+      &.full-width{
+      width: 100%;
+      }
     }
   }
 }
@@ -331,6 +334,11 @@
       .mat-form-field.mat-form-field-appearance-outline .mat-form-field-infix {
         padding: 5px 0;
       }
+    }
+    .pagelimit-container.border-top-0,
+    .header-container + .row-detail + .row-detail .pagelimit-container{
+      border-top: 0;
+      padding-top: 0;
     }
     // select
     mat-label{

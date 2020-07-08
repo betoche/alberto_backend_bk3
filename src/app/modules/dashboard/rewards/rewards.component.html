@@ -19,7 +19,7 @@
       </div>
 
       <div class="row-detail">
-        <div fxLayout="row" fxLayoutWrap fxLayoutGap="22px">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutWrap fxLayoutGap="22px">
           <div fxFlex fxLayout="column">
             <mat-label class="text-black" translate>PHARMACEUTICAL_COMPANY</mat-label>
             <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
@@ -67,7 +67,7 @@
               <ngx-datatable
                 class="material ml-0 mr-0"
                 [rows]="rewards"
-                [columnMode]="'force'"
+                [columnMode]="'forced'"
                 [headerHeight]="50"
                 [footerHeight]="50"
                 [scrollbarH]="true"
