@@ -1,142 +1,144 @@
-<div class="margin-horizontal-05rem mt-05">
-  <h1 class="mb-2 page-title">
-    {{ 'ORDERS' | translate }}
-  </h1>
+<div class="base-container">
+  <div class="box-detail table-layout">
+    <div class="table-layout-wrap">
+      <div class="header-container">
+        <div class="header-nav">
+          <h1 class="headline">{{ 'ORDERS' | translate }}</h1>
+        </div>
+      </div>
 
-  <ul class="order-tab mt-0">
-    <li [ngClass]="{
-      'order-tab-item': true,
-      'active': orderType == 'requests'
-    }">
-      <a routerLink="/dashboard/orders/requests" (click)="getOrders('requests')">
-        {{ 'REQUESTS' | translate }}
-      </a>
-    </li>
+      <div class="row-detail" animationDuration="0ms">
+        <div class="filter-group">
+          <a class="filter-item" routerLink="/dashboard/orders/requests"  [ngClass]="{'order-tab-item': true,'active': orderType == 'requests'}" (click)="getOrders('requests')">
+            {{ 'REQUESTS' | translate }}
+          </a>
+            <a class="filter-item" routerLink="/dashboard/orders/in_transit" [ngClass]="{'order-tab-item': true,'active': orderType == 'in_transit'}" (click)="getOrders('in_transit')">
+            {{ 'IN_TRANSIT' | translate }}
+          </a>
+          <a class="filter-item" routerLink="/dashboard/orders/record" [ngClass]="{'order-tab-item': true,'active': orderType == 'record'}" (click)="getOrders('record')">
+            {{ 'HISTORIES' | translate }}
+          </a>
+        </div>
+      </div>
 
-    <li [ngClass]="{
-      'order-tab-item': true,
-      'active': orderType == 'in_transit'
-    }">
-      <a routerLink="/dashboard/orders/in_transit" (click)="getOrders('in_transit')">
-        {{ 'IN_TRANSIT' | translate }}
-      </a>
-    </li>
 
-    <li [ngClass]="{
-      'order-tab-item': true,
-      'active': orderType == 'record'
-    }">
-      <a routerLink="/dashboard/orders/record" (click)="getOrders('record')">
-        {{ 'HISTORIES' | translate }}
-      </a>
-    </li>
-  </ul>
-</div>
+      <div class="row-detail"  *ngIf="orderType == 'record'">
+        <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutWrap fxLayoutGap="22px">
+          <div fxFlex fxLayout="column">
+            <mat-label class="text-black" translate>MONTH</mat-label>
+            <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
+              <mat-select (selectionChange)="onChangeMonth()" [(ngModel)]="month">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let month of months" [value]="month.value">
+                  {{ month.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex fxLayout="column">
+            <mat-label class="text-black" translate>YEAR</mat-label>
+            <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
+              <mat-select (selectionChange)="onChangeYear()" [(ngModel)]="year">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let year of years" [value]="year">
+                  {{ year }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div fxFlex fxLayout="column">
+          </div>
+        </div>
+      </div>
 
-<div class="margin-horizontal-05rem mt-20 clearfix" *ngIf="orderType == 'record'">
-  <div fxFlex="40">
-    <div fxFlex="50" class="pr-1">
-      <mat-label class="text-black" translate>MONTH</mat-label>
-      <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
-        <mat-select (selectionChange)="onChangeMonth()" [(ngModel)]="month">
-          <mat-option></mat-option>
-          <mat-option *ngFor="let month of months" [value]="month.value">
-            {{ month.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+      <div class="row-detail">
+        <div class="row pagelimit-container">
+          <datatable-page-limit [(limit)]="pageLimit"></datatable-page-limit>
+        </div>
+      </div>
 
-    <div fxFlex="33" class="pr-1">
-      <mat-label class="text-black" translate>YEAR</mat-label>
-      <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
-        <mat-select (selectionChange)="onChangeYear()" [(ngModel)]="year">
-          <mat-option></mat-option>
-          <mat-option *ngFor="let year of years" [value]="year">
-            {{ year }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
+      <div animationDuration="0ms">
+        <div class="clearfix table-container">
+          <mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+            <mat-card-content class="p-2">
+              <ngx-datatable
+                class="material ml-0 mr-0"
+                style="width: 100%"
+                [rows]="rows"
+                [columnMode]="'forced'"
+                [headerHeight]="50"
+                [footerHeight]="50"
+                [scrollbarH]="true"
+                [limit]="10"
+                [rowHeight]="50"
+                [messages]="datatableMessages"
+              >
+                <ngx-datatable-column name="{{'NUMBER_OF_REQUESTS' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.number_of_requests }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'DATE' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.requested_date_time_formatted }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'PLACE_OF_DELIVERY' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    {{ row?.customer_full_address }}
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column
+                name="{{'MEDICATION' | translate}}"
+                [flexGrow]="1"
+                [sortable]="true" prop="medication_names">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <p *ngFor="let item of row.order_items">
+                      {{ item.medication_name }}
+                    </p>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'AMOUNT' | translate}}" [flexGrow]="1" width="90" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <p *ngFor="let item of row.order_items">
+                      {{ item.quantity }}
+                    </p>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column name="{{'SUGGESTED_PRICE' | translate}}" [flexGrow]="1" [sortable]="false">
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <p *ngFor="let item of row.order_items">
+                      {{ item.subtotal_formatted }}
+                    </p>
+                  </ng-template>
+                </ngx-datatable-column>
+
+                <ngx-datatable-column [flexGrow]="1" cellClass="text-right-important actions-cell" headerClass="text-right-important" [sortable]="false">
+
+                  <ng-template let-row="row" ngx-datatable-cell-template>
+                    <button mat-raised-button mat-sm-button color="primary"
+                    *ngIf="orderType == 'requests' && currentUser?.role == 'drugstore_location'"
+                    (click)="takeOrder(row?.id)">
+                      {{ 'TAKE' | translate}}
+                    </button>
+
+                    <button mat-raised-button mat-sm-button color="primary"
+                    *ngIf="orderType != 'requests' || currentUser?.role != 'drugstore_location'"
+                    routerLink="/dashboard/orders/detail/{{row?.id}}">
+                      {{ 'SEE' | translate}}
+                    </button>
+                  </ng-template>
+                </ngx-datatable-column>
+              </ngx-datatable>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
-<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
-  <mat-card-content class="p-2">
-    <ngx-datatable
-      class="material ml-0 mr-0"
-      [rows]="rows"
-      [columnMode]="'force'"
-      [headerHeight]="50"
-      [footerHeight]="50"
-      [scrollbarH]="true"
-      [limit]="25"
-      [rowHeight]="50"
-      [messages]="datatableMessages"
-    >
-      <ngx-datatable-column name="{{'NUMBER_OF_REQUESTS' | translate}}" [flexGrow]="1" width="130" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.number_of_requests }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'DATE' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.requested_date_time_formatted }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'PLACE_OF_DELIVERY' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.customer_full_address }}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column
-      name="{{'MEDICATION' | translate}}"
-      [flexGrow]="1"
-      [sortable]="true" prop="medication_names">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <p *ngFor="let item of row.order_items">
-            {{ item.medication_name }}
-          </p>
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'AMOUNT' | translate}}" [flexGrow]="1" width="90" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <p *ngFor="let item of row.order_items">
-            {{ item.quantity }}
-          </p>
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{'SUGGESTED_PRICE' | translate}}" [flexGrow]="1" [sortable]="false">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <p *ngFor="let item of row.order_items">
-            {{ item.subtotal_formatted }}
-          </p>
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column [flexGrow]="1" cellClass="text-right-important actions-cell" headerClass="text-right-important" [sortable]="false">
-
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <button mat-raised-button mat-sm-button color="primary"
-          *ngIf="orderType == 'requests' && currentUser?.role == 'drugstore_location'"
-          class="btn-no-border-radius"
-          (click)="takeOrder(row?.id)">
-            {{ 'TAKE' | translate}}
-          </button>
-
-          <button mat-raised-button mat-sm-button color="primary"
-          *ngIf="orderType != 'requests' || currentUser?.role != 'drugstore_location'"
-          class="btn-no-border-radius" routerLink="/dashboard/orders/detail/{{row?.id}}">
-            {{ 'SEE' | translate}}
-          </button>
-        </ng-template>
-
-      </ngx-datatable-column>
-    </ngx-datatable>
-  </mat-card-content>
-</mat-card>

@@ -31,11 +31,6 @@ $screen-xl: 1200px;
     @content;
   }
 }
-@mixin radius-box-card{
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-}
 // lato-font
 @mixin font-lato{
     font-family: 'Lato', sans-serif;
@@ -112,6 +107,11 @@ $screen-xl: 1200px;
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     border-radius: 2px;
+}
+@mixin radius-box-card{
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
 }
 
 // degrade

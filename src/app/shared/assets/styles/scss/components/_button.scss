@@ -97,6 +97,22 @@
       color: black;
     }
   }
+  // table
+  datatable-body-row{
+    .mat-raised-button{
+      @include radius-button;
+      font-size: $font-size-md;
+      &.mat-primary{
+        background-color: $background-dark;
+      }
+      &:hover{
+        background-color: $primary;
+      }
+      .mat-button-wrapper{
+        padding: 4px 26px;
+      }
+    }
+  }
 }
 
 .tot-default-submit-btn {
