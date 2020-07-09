@@ -11,169 +11,167 @@
         </span>
       </div>
     </div>
-
-</div>
-<div class="box-detail">
-  <div class="row-detail full-width">
-    <!-- grid layout -->
-    <div fxLayout="row wrap" fxLayout.lt-sm="column">
-
-      <div fxFlex=100 class="order-number">
-        {{ 'ORDER' | translate}} {{ order?.number_of_requests }}
+  </div>
+  <div class=" box-detail">
+    <div class="order-detail">
+      <div class="order-row">
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" class="order-headline headline-column">
+          <div fxFlex.lt-sm fxFlex="50" class="column-name">
+            <p>
+              {{ 'ORDER' | translate}} {{ order?.number_of_requests }}
+            </p>
+          </div>
+          <div fxFlex.lt-sm fxFlex="50" class="column-description order-request-date">
+            <p>
+              {{ order?.requested_date_time_formatted }}
+            </p>
+          </div>
+        </div>
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column">
+          <div fxFlex.lt-sm fxFlex="70px" class="column-description">
+            <p>
+              {{ 'STATUS' | translate }}:
+            </p>
+          </div>
+          <div fxFlex>
+            <p class="order-status">
+              <mat-icon matSuffix>{{ statusIcon(order) }}</mat-icon>
+              <span>{{ order?.order_status_code | uppercase | translate }}</span>
+            </p>
+          </div>
+        </div>
       </div>
-
-      <div fxFlex="100px" class="order-status">
-        <p class="p-label pr-1">
-          {{ 'STATUS' | translate }}:
-        </p>
-
-        <p class="p-text">
-          <mat-icon matSuffix>{{ statusIcon(order) }}</mat-icon>
-          <span>{{ order?.order_status_code | uppercase | translate }}</span>
-        </p>
+      <div class="order-row">
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column">
+          <div fxFlex.lt-sm fxFlex="70px" class="column-name">
+            <h3 class="headline-column font-weight-bold">
+              {{ 'CLIENT' | translate }}:
+            </h3>
+          </div>
+          <div fxFlex class="column-description">
+            <p>
+              {{order?.customer_full_name}}
+            </p>
+            <p>
+              {{ 'PHONE_NUMBER' | translate }}:
+            </p>
+            <p>
+              {{ !!order?.customer_main_phone_number ? order?.customer_main_phone_number : 'N/A' }}
+            </p>
+            <p>
+              {{ 'CLIENT_ADDRESS' | translate }}:
+              {{!!order?.customer_full_address ? order?.customer_full_address : 'N/A'}}
+            </p>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <div fxFlex class="order-request-date text-right">
-        {{ order?.requested_date_time_formatted }}
+
+    <ngx-datatable
+      class="material ml-0 mr-0 mt-1"
+      [rows]="orderItems"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [scrollbarH]="true"
+      [limit]="1000"
+      [rowHeight]="50"cl
+    >
+      <ngx-datatable-column name="{{'NUMBER_OF_REQUESTS' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ order?.number_of_requests }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'MEDICATION' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.medication_name }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'AMOUNT' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.quantity }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'UNIT_PRICE' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.price_formatted }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'AGREED_SUBTOTAL' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.subtotal_formatted }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'IVA' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.tax_formatted }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'TOTAL' | translate}}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.total_formatted }}
+        </ng-template>
+      </ngx-datatable-column>
+
+    </ngx-datatable>
+    
+    <div class="order-detail total-order">
+      <div class="order-row" ngClass.xs="full-width">
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column">
+          <div fxFlex.lt-sm fxFlex="150px" class="column-name" ngClass.xs="text-left">
+            <p>{{'AGREED_SUBTOTAL' | translate}}:</p>
+          </div>
+          <div fxFlex.lt-sm fxFlex="150px" class="column-description">
+            <p>{{order?.subtotal_formatted}}</p>
+          </div>
+        </div>
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column">
+          <div fxFlex.lt-sm fxFlex="150px" class="column-name" ngClass.xs="text-left">
+            <p>{{'IVA' | translate}}:</p>
+          </div>
+          <div fxFlex.lt-sm fxFlex="150px" class="column-description">
+            <p>{{order?.tax_formatted}}</p>
+          </div>
+        </div>
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column">
+          <div fxFlex.lt-sm fxFlex="150px" class="column-name" ngClass.xs="text-left font-weight-bold">
+            <p>{{'TOTAL' | translate}}:</p>
+          </div>
+          <div fxFlex.lt-sm fxFlex="150px" class="column-description font-weight-bold">
+            <p>{{order?.total_formatted}}</p>
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div class="text-center mt-1" *ngIf="currentUser?.role == 'drugstore_location'">
+      <button mat-raised-button mat-sm-button
+      class="outline-btn btn-no-border-radius mr-1 btn-no-bg white-button"
+      *ngIf="order.order_status_code == 'in_process' || order.order_status_code == 'dispatched'"
+      (click)="updateStatus('cancel')">
+        {{ 'CANCEL_ORDER' | translate}}
+      </button>
+
+      <button mat-raised-button mat-sm-button
+      class="outline-btn btn-no-border-radius mr-1 btn-no-bg white-button"
+      (click)="updateStatus('release')"
+      *ngIf="order.order_status_code == 'in_process'">
+        {{ 'RELEASE_ORDER' | translate}}
+      </button>
+
+      <button mat-raised-button mat-sm-button color="primary"
+      class="mr-1 btn-primary btn-no-border-radius green-button"
+      (click)="updateStatus('dispatch')"
+      *ngIf="order.order_status_code == 'in_process'">
+        {{ 'MARK_AS_DISPATCHED' | translate}}
+      </button>
     </div>
   </div>
-
-  <div fxLayout="row wrap" fxLayout.lt-sm="column" class="place-of-delivery-wrapper">
-    <div fxFlex="100">
-      <p class="p-label pr-1">
-        {{ 'CLIENT' | translate }}:
-      </p>
-
-      <p class="p-text">
-        {{order?.customer_full_name}}
-      </p>
-    </div>
-
-    <div fxFlex="100">
-      <p class="p-label pr-1">
-        {{ 'PHONE_NUMBER' | translate }}:
-      </p>
-
-      <p class="p-text">
-        {{ !!order?.customer_main_phone_number ? order?.customer_main_phone_number : 'N/A' }}
-      </p>
-    </div>
-
-    <div fxFlex="100">
-      <p class="p-label pr-1">
-        {{ 'CLIENT_ADDRESS' | translate }}:
-      </p>
-
-      <p class="p-text">
-        {{!!order?.customer_full_address ? order?.customer_full_address : 'N/A'}}
-      </p>
-    </div>
-  </div>
-
-  <ngx-datatable
-    class="material ml-0 mr-0 mt-1"
-    [rows]="orderItems"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="50"
-    [scrollbarH]="true"
-    [limit]="1000"
-    [rowHeight]="50"cl
-  >
-    <ngx-datatable-column name="{{'NUMBER_OF_REQUESTS' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ order?.number_of_requests }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{'MEDICATION' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.medication_name }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{'AMOUNT' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.quantity }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{'UNIT_PRICE' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.price_formatted }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{'AGREED_SUBTOTAL' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.subtotal_formatted }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{'IVA' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.tax_formatted }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="{{'TOTAL' | translate}}" [flexGrow]="1" [sortable]="false">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.total_formatted }}
-      </ng-template>
-    </ngx-datatable-column>
-
-  </ngx-datatable>
-
-  <!-- grid layout -->
-  <div class="subtotal-and-total text-right">
-    <div class="order-subtotal">
-      <div class="label">
-        {{'AGREED_SUBTOTAL' | translate}}:
-      </div>
-      <div class="text">
-        {{order?.subtotal_formatted}}
-      </div>
-    </div>
-    <div class="order-tax">
-      <div class="label">
-        {{'IVA' | translate}}:
-      </div>
-      <div class="text">
-        {{order?.tax_formatted}}
-      </div>
-    </div>
-    <div class="order-total">
-      <div class="label">
-        {{'TOTAL' | translate}}:
-      </div>
-      <div class="text">
-        {{order?.total_formatted}}
-      </div>
-    </div>
-  </div>
-
-  <div class="text-center mt-1" *ngIf="currentUser?.role == 'drugstore_location'">
-    <button mat-raised-button mat-sm-button
-    class="outline-btn btn-no-border-radius mr-1 btn-no-bg white-button"
-    *ngIf="order.order_status_code == 'in_process' || order.order_status_code == 'dispatched'"
-    (click)="updateStatus('cancel')">
-      {{ 'CANCEL_ORDER' | translate}}
-    </button>
-
-    <button mat-raised-button mat-sm-button
-    class="outline-btn btn-no-border-radius mr-1 btn-no-bg white-button"
-    (click)="updateStatus('release')"
-    *ngIf="order.order_status_code == 'in_process'">
-      {{ 'RELEASE_ORDER' | translate}}
-    </button>
-
-    <button mat-raised-button mat-sm-button color="primary"
-    class="mr-1 btn-primary btn-no-border-radius green-button"
-    (click)="updateStatus('dispatch')"
-    *ngIf="order.order_status_code == 'in_process'">
-      {{ 'MARK_AS_DISPATCHED' | translate}}
-    </button>
-  </div>
-</div>
 </div>
