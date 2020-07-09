@@ -31,7 +31,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DashboardIndexComponent } from './index/index.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from 'app/modules/dashboard/order-detail/order-detail.component';
-import { EditProfileComponent } from 'app/shared/modules/dashboard/edit-profile/edit-profile.component';
+import { EditProfileComponent } from 'app/modules/dashboard/edit-profile/edit-profile.component';
 
 import { DialogService } from 'app/shared/services/dialog.service';
 import { RewardsComponent } from './rewards/rewards.component';

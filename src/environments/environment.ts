@@ -6,8 +6,7 @@
 export const environment = {
   production: false,
   environment_name: 'development',
-  //apiURL: 'http://localhost:3001/api/v1',
-  apiURL: 'https://dashboards-api.tot.glslabs.com/api/v1',
+  apiURL: 'http://localhost:3001/api/v1',
   firebaseConfig: {
     apiKey: 'AIzaSyBX3rBJ5NQJfHQTSzhZPRr0jVM2Mjxc16M',
     authDomain: 'tot-gls-265709.firebaseapp.com',

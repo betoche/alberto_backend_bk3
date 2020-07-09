@@ -349,8 +349,13 @@
     // form field
     .mat-form-field{
       &.mat-form-field-appearance-outline .mat-form-field-infix{
-        padding-top: 11px !important;
-        padding-bottom: 11px !important;
+        padding-top: 4px !important;
+        padding-bottom: 4px !important;
+      }
+      &.mat-select-tot-style .mat-form-field-infix,
+      &.mat-form-field-type-mat-input .mat-form-field-infix{
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
       }
       &.mat-form-field-appearance-outline.form-field-default .mat-form-field-infix{
         padding: 20px 0 !important

@@ -18,6 +18,46 @@ export class DataHelper {
     }
   };
 
+  public static drugstoreUserData = {
+    data: {
+      attributes: {
+        company: {
+          address_attributes: {
+            canton_code: "1",
+            canton_name: "Alajuela",
+            country_code: "CR",
+            country_name: "Costa Rica",
+            district_code: "1",
+            district_name: "Alajuela",
+            note: "test",
+            province_code: "1",
+            province_name: "Alajuela",
+            suburb_code: "1",
+            suburb_name: "Acequia Grande"
+          },
+          code: "1234",
+          company_code: "1138535934684",
+          drugstore_attributes: {
+            name: "test", company_code: "1138535934684"
+          },
+          id: "5efea29a50e955002fb9581c",
+          logo_url: "http://example.com/logo.png",
+          name: "test",
+          status: "active",
+          type: "DrugstoreLocation"
+        },
+        email: "drugstore_location@gmail.com",
+        name: "Soledad Menchaca Reynoso",
+        phone_country: "505",
+        phone_number: "88888888",
+        role: "drugstore_location_administrator",
+        secondary_phone_country: "505",
+        secondary_phone_number: "85296121",
+        status: "active"
+      }
+    }
+  };
+
   public static usersData(id, options = {}) {
     return {
       id: id,

@@ -47,7 +47,7 @@ describe('OrdersComponent', () => {
       expect($('datatable-row-wrapper:first-child').text()).toContain('15/05/2020 02:50 am.');
       expect($('datatable-row-wrapper:first-child').text()).toContain('3');
       expect($('datatable-row-wrapper:first-child').text()).toContain('₡ 3.714');
-      expect($('datatable-row-wrapper:first-child').text()).toContain('TAKE');
+      expect($('datatable-row-wrapper:first-child').text()).toContain('SEE');
     });
   });
 

@@ -30,20 +30,32 @@ describe('EditProfileComponent', () => {
   describe('UPDATE profile', () => {
     it('fills form fields and clicks on submit button', fakeAsync(() => {
       let service = stubRequestUpdate();
-      spyOn(component, 'showFlashSuccessful');
+      spyOn(component, 'showUpdateMessageSuccessful');
 
       component.form.get('name').setValue('my name');
-      component.form.get('password').setValue('1234678');
-      component.form.get('password_confirmation').setValue('1234678');
-      component.form.get('secondary_phone_country').setValue('vn');
-      component.form.get('secondary_phone_number').setValue('12345678');
+      component.form.get('phone_country').setValue('505');
+      component.form.get('phone_number').setValue('88888888');
+      component.form.get('company_attributes').setValue({
+        name: 'test', code: '1234',
+        company_name: 'test',
+        company_code: 'test',
+        address_attributes: {
+          id: '5ef1231e50e95500301adceb',
+          canton_code: "1",
+          country_code: "CR",
+          district_code: "1",
+          note: "sdfgdfg",
+          province_code: "1",
+          suburb_code: "1"
+        }
+      });
       fixture.detectChanges();
       fixture.debugElement.nativeElement.querySelector('#submit-btn').click();
 
       expect(service.updateProfile).toHaveBeenCalled();
       tick();
       fixture.detectChanges();
-      expect(component.showFlashSuccessful).toHaveBeenCalled();
+      expect(component.showUpdateMessageSuccessful).toHaveBeenCalled();
     }));
   });
 
@@ -72,13 +84,13 @@ describe('EditProfileComponent', () => {
   function stubRequestUpdate() {
     let service = TestBed.get(ProfileService);
     spyOn(service, 'updateProfile').and.callFake(() => {
-      return of(DataHelper.userData);
+      return of(DataHelper.drugstoreUserData);
     });
 
     return service;
   }
 
   function setCurrentUser() {
-    localStorage.setItem('current_user', JSON.stringify(DataHelper.userData['data']['attributes']));
+    localStorage.setItem('current_user', JSON.stringify(DataHelper.drugstoreUserData['data']['attributes']));
   }
 });
