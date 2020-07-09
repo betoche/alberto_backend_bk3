@@ -1,3 +1,7 @@
+@import '../../../../shared/assets/styles/tot/definitions.scss';
+@import '../../../../shared/assets/styles/scss/_variables.scss';
+@import '../../../../shared/assets/styles/scss/mixins/_mixins.scss';
+
 .reward-tab {
   margin-bottom: 0px;
   padding-left: 0px;
@@ -60,28 +64,20 @@
   margin: 62px auto 25px;
 }
 .enter-code-form-field .mat-input-element{
-  font-size: 28px;
+  font-size: $font-size-input-lg;
   text-align: center;
 }
 .enter-code-form-field .mat-input-element::-webkit-input-placeholder {
-  font-weight: 300;
-  text-align: center;
-  font-size: 18px;
+  @include placeholder-md;
 }
 .enter-code-form-field .mat-input-element::-moz-placeholder {
-  font-weight: 300;
-  text-align: center;
-  font-size: 18px;
+  @include placeholder-md;
 }
 .enter-code-form-field .mat-input-element:-ms-input-placeholder {
-  font-weight: 300;
-  text-align: center;
-  font-size: 18px;
+  @include placeholder-md;
 }
 .enter-code-form-field .mat-input-element:-moz-placeholder {
-  font-weight: 300;
-  text-align: center;
-  font-size: 18px;
+  @include placeholder-md;
 }
 // section info - margin-bottom
 .section-info{
