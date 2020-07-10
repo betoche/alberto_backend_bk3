@@ -45,7 +45,7 @@
           <div fxFlex fxLayout="column">
             <mat-label class="text-black" translate>DATE</mat-label>
             <mat-form-field fxFlex floatLabel="never" appearance="outline">
-              <input matInput [matDatepicker]="datepicker" placeholder="DD/MM/YYYY" [(ngModel)]="redemptionDate" (dateChange)="filter()">
+              <input matInput [matDatepicker]="datepicker" placeholder="{{ 'ALL_SELECT' | translate }}" [(ngModel)]="redemptionDate" (dateChange)="filter()">
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
               <mat-datepicker touchUi="true" #datepicker></mat-datepicker>
             </mat-form-field>
