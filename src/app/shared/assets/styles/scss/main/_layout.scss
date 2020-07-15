@@ -215,7 +215,7 @@
     font-size: 30px !important;
     font-weight: bold !important;
     display: block !important;
-    color: $dark-color !important;
+    color: $body-text-color !important;
     line-height: 1 !important;
   }
   // Container Breadcrumb Layout
@@ -253,10 +253,10 @@
   position: relative;
   margin: 0 auto 32px;
   padding: 20px !important;
+  @include radius-box-card;
   @include md{
     padding: 32px 47px !important;
   }
-  @include radius-box-card;
   &:last-child{
     margin-bottom: 0;
   }
@@ -394,6 +394,7 @@
         background-color: $primary-color;
         height: 3px;
         width: calc(100% + 64px);
+        z-index: 2;
       }
       .datatable-header-inner{
         overflow: hidden;
@@ -428,8 +429,24 @@
 
 
 // split
+.split-primary,
 .split{
   height: 1px;
   margin: 42px 0;
   background-color: $disabled-button-background;
+}
+.split-primary{
+  background-color: $primary-color;
+}
+
+// split
+.vertical-split-primary,
+.vertical-split{
+  width: 1px;
+  margin: 0 30px;
+  height: 100%;
+  background-color: $disabled-button-background;
+}
+.vertical-split-primary{
+  background-color: $primary-color;
 }
