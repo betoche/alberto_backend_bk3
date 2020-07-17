@@ -16,7 +16,7 @@
     <div class="order-detail">
       <div class="order-row">
         <div fxLayout="row nowrap" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" class="order-headline headline-column">
-          <div fxFlex.lt-sm fxFlex="50" class="column-name">
+          <div fxFlex.lt-sm fxFlex="50" class="column-name order-number">
             <p>
               {{ 'ORDER' | translate}} {{ order?.number_of_requests }}
             </p>
@@ -121,7 +121,7 @@
       </ngx-datatable-column>
 
     </ngx-datatable>
-    
+
     <div class="order-detail total-order">
       <div class="order-row" ngClass.xs="full-width">
         <div fxLayout="row nowrap" fxLayout.lt-sm="column">

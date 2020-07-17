@@ -217,6 +217,9 @@
     display: block !important;
     color: $body-text-color !important;
     line-height: 1 !important;
+    h1{
+      margin: 0;
+    }
   }
   // Container Breadcrumb Layout
   .breadcrumb{
@@ -290,7 +293,8 @@
     }
     @include md{
       width: 85%;
-      margin: 0 auto $row-detail-margin-bottom auto;
+      margin-left: auto;
+      margin-right: auto;
       &.full-width{
       width: 100%;
       }
@@ -433,7 +437,7 @@
 .split{
   height: 1px;
   margin: 42px 0;
-  background-color: $disabled-button-background;
+  background-color: $split-gray;
 }
 .split-primary{
   background-color: $primary-color;
@@ -445,8 +449,16 @@
   width: 1px;
   margin: 0 30px;
   height: 100%;
-  background-color: $disabled-button-background;
+  background-color: $split-gray;
 }
 .vertical-split-primary{
   background-color: $primary-color;
+}
+
+// border split
+.border-b-primary{
+  border-bottom: 1px solid $primary-color;
+}
+.border-b-gray{
+  border-bottom: 1px solid $split-gray;
 }

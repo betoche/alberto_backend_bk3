@@ -3,16 +3,16 @@ import { of, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { EditProfileComponent } from './edit-profile.component';
+import { EditUserProfileComponent } from './edit-profile.component';
 
 import { TestBedHelper } from 'spec/test-bed/test-bed-helper';
 import { DataHelper } from 'app/shared/spec/data-helper';
 
 import { ProfileService } from 'app/shared/services/profile.service';
 
-describe('EditProfileComponent', () => {
-  let component: EditProfileComponent;
-  let fixture: ComponentFixture<EditProfileComponent>;
+describe('EditUserProfileComponent', () => {
+  let component: EditUserProfileComponent;
+  let fixture: ComponentFixture<EditUserProfileComponent>;
 
   beforeEach(async(() => {
     setCurrentUser();
@@ -68,7 +68,7 @@ describe('EditProfileComponent', () => {
       Object.assign(
         {
           imports: [RouterTestingModule.withRoutes([])],
-          declarations: [EditProfileComponent]
+          declarations: [EditUserProfileComponent]
         },
         options
       )
@@ -76,7 +76,7 @@ describe('EditProfileComponent', () => {
   }
 
   function createComponent() {
-    fixture = TestBed.createComponent(EditProfileComponent);
+    fixture = TestBed.createComponent(EditUserProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }

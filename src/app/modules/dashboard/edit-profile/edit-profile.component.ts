@@ -15,7 +15,7 @@ import * as _ from 'lodash';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent extends Many(ApplicationBaseComponent, FormBaseComponent) implements OnInit {
+export class EditUserProfileComponent extends Many(ApplicationBaseComponent, FormBaseComponent) implements OnInit {
   public form: FormGroup;
   public governmentIdTypes: any = [];
   public type = 'Drugstore'
