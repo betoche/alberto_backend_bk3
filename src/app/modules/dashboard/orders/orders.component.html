@@ -9,12 +9,14 @@
 
       <div class="row-detail" animationDuration="0ms">
         <div class="filter-group">
-          <a class="filter-item" routerLink="/dashboard/orders/requests"  [ngClass]="{'order-tab-item': true,'active': orderType == 'requests'}" (click)="getOrders('requests')">
+          <a class="filter-item" routerLink="/dashboard/orders/requests"  [ngClass]="{'order-tab-item': true,'active': orderType == 'requests'}" (click)="getOrders('requests')" *ngIf="currentUser?.role == 'drugstore_location'">
             {{ 'REQUESTS' | translate }}
           </a>
-            <a class="filter-item" routerLink="/dashboard/orders/in_transit" [ngClass]="{'order-tab-item': true,'active': orderType == 'in_transit'}" (click)="getOrders('in_transit')">
+
+          <a class="filter-item" routerLink="/dashboard/orders/in_transit" [ngClass]="{'order-tab-item': true,'active': orderType == 'in_transit'}" (click)="getOrders('in_transit')" *ngIf="currentUser?.role == 'drugstore_location'">
             {{ 'IN_TRANSIT' | translate }}
           </a>
+
           <a class="filter-item" routerLink="/dashboard/orders/record" [ngClass]="{'order-tab-item': true,'active': orderType == 'record'}" (click)="getOrders('record')">
             {{ 'HISTORIES' | translate }}
           </a>
@@ -71,7 +73,7 @@
               [headerHeight]="50"
               [footerHeight]="50"
               [scrollbarH]="true"
-              [limit]="10"
+              [limit]="pageLimit"
               [rowHeight]="50"
               [messages]="datatableMessages"
             >
@@ -87,9 +89,23 @@
                 </ng-template>
               </ngx-datatable-column>
 
-              <ngx-datatable-column name="{{'PLACE_OF_DELIVERY' | translate}}" [flexGrow]="1" [sortable]="false">
+              <ngx-datatable-column name="{{'PLACE_OF_DELIVERY' | translate}}" [flexGrow]="1" [sortable]="false" *ngIf="orderType != 'in_transit'">
                 <ng-template let-row="row" ngx-datatable-cell-template>
-                  {{ row?.customer_full_address }}
+                  {{ row?.place_of_delivery }}
+                </ng-template>
+              </ngx-datatable-column>
+
+              <ngx-datatable-column name="{{'CLIENT' | translate}}" [flexGrow]="1" [sortable]="false" *ngIf="orderType == 'in_transit'">
+                <ng-template let-row="row" ngx-datatable-cell-template>
+                  <p>
+                    {{row?.customer_full_name}}
+                  </p>
+                  <p>
+                    {{ !!row?.customer_main_phone_number ? row?.customer_main_phone_number : 'N/A' }}
+                  </p>
+                  <p>
+                    {{!!row?.place_of_delivery ? row?.place_of_delivery : 'N/A'}}
+                  </p>
                 </ng-template>
               </ngx-datatable-column>
 

@@ -47,7 +47,7 @@ mat-form-field.phone-number{
           }
         }
         .mat-form-field-flex .mat-form-field-infix {
-          padding:  20px 0;
+          padding:  14px 0;
           border-top: 0;
           padding-left: 35px;
         }
@@ -63,7 +63,7 @@ mat-form-field.phone-number{
     }
     .mat-form-field-flex .mat-form-field-infix{
       border: 0;
-      padding: 20px 0;
+      padding: 14px 0;
     }
     input{
       @include font-lato;
@@ -74,6 +74,10 @@ mat-form-field.phone-number{
       .mat-form-field-flex .mat-form-field-infix{
         padding: 11px 0;
       }
+    }
+
+    .mat-form-field-suffix{
+      top: 0.45em;
     }
   }
   // aling middle
@@ -134,19 +138,36 @@ mat-form-field.phone-number{
 
 
 // select
+.mat-select-trigger{
+    vertical-align: middle;
+}
+.mat-select-value{
+  vertical-align: middle
+}
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  -webkit-transform: none !important;
+  transform: none !important;
+}
 .mat-select-arrow-wrapper {
+  vertical-align: middle;
+  margin: 0;
   // icon
   .mat-select-arrow {
     color: $primary-color;
     border: 0;
+    height: 16px;
+    width: 24px;
+    position: relative;
+    margin: 0 -5px 0 0;
     &:after{
       content: 'keyboard_arrow_down';
       @include font-material;
       position: absolute;
       top: 0;
-      right: -5px;
+      right: 0;
       bottom: 0;
       margin: auto;
+      width: 24px;
       height: 24px;
     }
   }

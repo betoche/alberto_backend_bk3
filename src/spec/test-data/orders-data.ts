@@ -7,7 +7,7 @@ export const orderData_1 = {
       "requested_date_time":"2020-05-15T02:50:00.190-06:00",
       "aasm_state":"ready_to_be_taken",
       "customer_full_name":"Leticia Orosco",
-      "customer_full_address":"123 HCM VN",
+      "place_of_delivery":"123 HCM VN",
       "customer_main_phone_number":"945-099-330",
       "subtotal":"3714.0",
       "tax":"482.82",

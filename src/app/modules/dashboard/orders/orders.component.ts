@@ -21,6 +21,7 @@ export class OrdersComponent extends DatatableBaseComponent implements OnInit, A
   public scope: string = 'orders';
   public currentUser: any={};
   public orderType: string;
+  public pageLimit: number=10;
   public months: any = [
     { name: 'Enero', value: 1 },
     { name: 'Febrero', value: 2 },
@@ -53,6 +54,11 @@ export class OrdersComponent extends DatatableBaseComponent implements OnInit, A
 
   ngOnInit() {
     this.orderType = this.route.snapshot.params.type;
+
+    if (this.currentUser.role != 'drugstore_location' && this.orderType != 'record') {
+      this.orderType = 'record'
+      this.router.navigate([`/dashboard/orders/record`]);
+    }
   }
 
   ngAfterContentInit() {

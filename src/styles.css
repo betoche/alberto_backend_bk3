@@ -55,3 +55,7 @@
   background-color: #d6d8d9;
   border-color: #c6c8ca;
 }
+
+.base-container {
+  padding-bottom: 100px
+}

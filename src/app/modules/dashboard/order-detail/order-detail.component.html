@@ -54,13 +54,11 @@
             </p>
             <p>
               {{ 'PHONE_NUMBER' | translate }}:
-            </p>
-            <p>
               {{ !!order?.customer_main_phone_number ? order?.customer_main_phone_number : 'N/A' }}
             </p>
             <p>
               {{ 'CLIENT_ADDRESS' | translate }}:
-              {{!!order?.customer_full_address ? order?.customer_full_address : 'N/A'}}
+              {{!!order?.place_of_delivery ? order?.place_of_delivery : 'N/A'}}
             </p>
           </div>
         </div>

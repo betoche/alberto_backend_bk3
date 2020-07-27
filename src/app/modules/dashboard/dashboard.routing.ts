@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 import { DashboardIndexComponent } from './index/index.component';
-import { EditUserProfileComponent } from 'app/modules/dashboard/edit-profile/edit-profile.component';
+import { EditProfileComponent } from 'app/shared/modules/dashboard/edit-profile/edit-profile.component';
 import { OrdersComponent } from 'app/modules/dashboard/orders/orders.component';
 import { OrderDetailComponent } from 'app/modules/dashboard/order-detail/order-detail.component';
 import { ProfileComponent } from 'app/shared/modules/dashboard/profile/profile.component';
@@ -24,7 +24,7 @@ export const DashboardRoutes: Routes = [
       },
       {
         path: 'edit_profile',
-        component: EditUserProfileComponent,
+        component: EditProfileComponent,
         data: { title: 'EDIT_PROFILE', breadcrumb: 'EDIT_PROFILE' }
       },
       {

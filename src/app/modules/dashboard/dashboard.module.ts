@@ -32,7 +32,7 @@ import { DashboardIndexComponent } from './index/index.component';
 import { OrdersComponent } from './orders/orders.component';
 import { OrderDetailComponent } from 'app/modules/dashboard/order-detail/order-detail.component';
 import { EditProfileComponent } from 'app/shared/modules/dashboard/edit-profile/edit-profile.component';
-import { EditUserProfileComponent } from 'app/modules/dashboard/edit-profile/edit-profile.component';
+import { ProfileComponent } from 'app/shared/modules/dashboard/profile/profile.component';
 
 import { DialogService } from 'app/shared/services/dialog.service';
 import { RewardsComponent } from './rewards/rewards.component';
@@ -68,7 +68,7 @@ import { RedemptionComponent } from './rewards/redemption/redemption.component';
     RouterModule.forChild(DashboardRoutes)
   ],
   declarations: [
-    DashboardIndexComponent, EditUserProfileComponent, EditProfileComponent,
+    DashboardIndexComponent, EditProfileComponent, ProfileComponent,
     OrdersComponent, OrderDetailComponent, RewardsComponent, RedemptionComponent
   ],
   entryComponents: [],

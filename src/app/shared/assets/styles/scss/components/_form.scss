@@ -173,6 +173,21 @@ mat-label {
     }
   }
 }
+.mat-checkbox-label{
+    color: $primary;
+}
+
+// material checkbox
+.e-checkbox-wrapper:hover .e-frame.e-check,
+.e-css.e-checkbox-wrapper:hover .e-frame.e-check,
+.e-checkbox-wrapper .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-frame.e-check{
+    background-color: $primary-color !important;
+}
+.e-treeview .e-list-item.e-active > .e-text-content .e-list-text{
+    color: $primary-color !important;
+}
+
 .form-input-wrap {
   margin-top: 10px;
   margin-bottom: 10px;
